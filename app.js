@@ -37,6 +37,11 @@ require('./config/passport.js')(passport);
 
 app = config(app);
 
+mongoose.connect('mongodb://hknight:Wolf5050cs@ds139295.mlab.com:39295/lama', {
+	uri_decode_auth : true
+}, function(err, db) {}
+);
+
 mongoose.connect('mongodb://sysLama:123@localhost/Lama', {uri_decode_auth : true }, function(err, db) {} );
 
 mongoose.connection.on('open', function() {
