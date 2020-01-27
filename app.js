@@ -37,7 +37,7 @@ require('./config/passport.js')(passport);
 
 app = config(app);
 
-mongoose.connect('mongodb://localhost/Lama', { uri_decode_auth : true }, function(err, db) {} );
+mongoose.connect('mongodb://localhost/Lama', { useMongoClient: true }, function(err, db) {} );
 
 mongoose.connection.on('open', function() {
 	console.log('Mongoose connected.');
