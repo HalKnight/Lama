@@ -29,7 +29,7 @@ var express = require('express'),
 	mongoose = require('mongoose');
 
 //app.set('port', process.env.PORT || 8080);
-var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8082;
+var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80;
 var server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.set('views', __dirname + '/views');
@@ -37,10 +37,9 @@ require('./config/passport.js')(passport);
 
 app = config(app);
 
-mongoose.connect('mongodb://sysLama:123@localhost/Lama', {uri_decode_auth : true }, function(err, db) {} );
+mongoose.connect('mongodb://localhost/Lama', { useMongoClient: true }, function(err, db) {} );
 
 mongoose.connection.on('open', function() {
-	
 	console.log('Mongoose connected.');
 });
 

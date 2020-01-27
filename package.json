@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "MD5": "^1.2.2",
+    "MD5": "^1.3.0",
     "async": "^1.0.0",
     "bad-words": "^1.6.0",
     "badwords-list": "^1.0.0",
@@ -20,30 +20,22 @@
     "is-absolute": "^1.0.0",
     "method-override": "^2.3.10",
     "moment": "^2.24.0",
-    "mongoose": "^4.0.4",
+    "mongoose": "^4.13.19",
     "morgan": "^1.9.1",
     "multer": "^0.1.8",
-    "natives": "^1.1.6",
     "node-persist": "^2.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "properties-reader": "0.0.16",
-    "randomstring": "^1.1.5"
-  },
-  "devDependencies": {
-    "chai": "^1.9.1",
-    "gulp": "^4.0.2",
-    "proxyquire": "^1.0.1",
-    "sinon": "^1.10.2",
-    "sinon-chai": "^2.5.0"
+    "randomstring": "^1.1.5",
+    "graceful-fs": "^4.2.3"
   },
   "scripts": {
-    "test": "mocha -r tests/testhelper.js -R spec tests/**/*.test.js",
     "start": "node app.js"
   },
   "author": "HKnight",
   "license": "ISC",
   "engines": {
-	    "node": "11.x"
-	}
+    "node": "11.x"
+  }
 }
