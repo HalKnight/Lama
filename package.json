@@ -29,15 +29,7 @@
     "properties-reader": "0.0.16",
     "randomstring": "^1.1.5"
   },
-  "devDependencies": {
-    "chai": "^1.9.1",
-    "gulp": "^4.0.2",
-    "proxyquire": "^1.0.1",
-    "sinon": "^1.10.2",
-    "sinon-chai": "^2.5.0"
-  },
   "scripts": {
-    "test": "mocha -r tests/testhelper.js -R spec tests/**/*.test.js",
     "start": "node app.js"
   },
   "author": "HKnight",
