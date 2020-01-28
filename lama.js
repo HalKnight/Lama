@@ -22,30 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-var express = require('express'),
-	config = require('./server/configure'),
-	app = express(),
-	passport = require('passport'),
-	mongoose = require('mongoose');
+var express = require("express"),
+  config = require("./server/configure"),
+  app = express(),
+  passport = require("passport"),
+  mongoose = require("mongoose");
 
 //app.set('port', process.env.PORT || 8080);
 var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 80;
-var server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var server_ip_address =
+  process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
-app.set('views', __dirname + '/views');
-require('./config/passport.js')(passport);
+app.set("views", __dirname + "/views");
+require("./config/passport.js")(passport);
 
 app = config(app);
 
-mongoose.connect('mongodb://localhost/Lama', { useMongoClient: true }, function(err, db) {} );
+mongoose.connect(
+  "mongodb://sysLama:123@localhost/Lama",
+  { useMongoClient: true },
+  function(err, db) {}
+);
 
-mongoose.connection.on('open', function() {
-	console.log('Mongoose connected.');
+mongoose.connection.on("open", function() {
+  console.log("Mongoose connected.");
 });
 
 //var server = app.listen(app.get('port'), function() {
 //	console.log('Server up: http://localhost:' + app.get('port'));
 //});
-var server = app.listen(server_port, server_ip_address, function () {
-	  console.log( "Listening on " + server_ip_address + ", port " + server_port );
+var server = app.listen(server_port, server_ip_address, function() {
+  console.log("Listening on " + server_ip_address + ", port " + server_port);
 });
