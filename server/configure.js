@@ -21,76 +21,86 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var path = require('path'),
-	routes = require('./routes'),
-	exphbs = require('express-handlebars'),
-	express = require('express'),
-	bodyParser = require('body-parser'),
-	cookieParser = require('cookie-parser'),
-	morgan = require('morgan'),
-	methodOverride = require('method-override'),
-	errorHandler = require('errorhandler'),
-	moment = require('moment'),
-	multer = require('multer'),
-	session = require('express-session'),
-	passport = require('passport'),
-	LocalStrategy = require('passport-local'),
-	flash = require('connect-flash');
-
+var path = require("path"),
+  routes = require("./routes"),
+  exphbs = require("express-handlebars"),
+  express = require("express"),
+  bodyParser = require("body-parser"),
+  cookieParser = require("cookie-parser"),
+  morgan = require("morgan"),
+  methodOverride = require("method-override"),
+  errorHandler = require("errorhandler"),
+  moment = require("moment"),
+  multer = require("multer"),
+  session = require("express-session"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local"),
+  flash = require("connect-flash");
 
 module.exports = function(app) {
-	app.engine('handlebars', exphbs.create({
-		defaultLayout : 'main',
-		layoutsDir : app.get('views') + '/layouts',
-		partialsDir : [ app.get('views') + '/partials' ],
-		helpers : {
-			timeago : function(timestamp) {
-				return moment(timestamp).startOf('minute').fromNow();
-			},
-			eq : function(value1, value2) {
-				if (value1 == value2) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-	}).engine);
+  app.engine(
+    "handlebars",
+    exphbs.create({
+      defaultLayout: "main",
+      layoutsDir: app.get("views") + "/layouts",
+      partialsDir: [app.get("views") + "/partials"],
+      helpers: {
+        timeago: function(timestamp) {
+          return moment(timestamp)
+            .startOf("minute")
+            .fromNow();
+        },
+        eq: function(value1, value2) {
+          if (value1 == value2) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+    }).engine
+  );
 
-	app.set('view engine', 'handlebars');
+  app.set("view engine", "handlebars");
 
-	app.use(morgan('dev'));
-	app.use(bodyParser.urlencoded({
-		extended : false
-	}));
-	app.use(bodyParser.json());
-	app.use(multer({
-		dest : path.join(__dirname, 'public/upload/temp')
-	}));
-	app.use(methodOverride());
-	app.use(cookieParser('BNuBEP5S9n7E2s5juGzTuhdCscHJ184jqTsaKinE'));
+  app.use(morgan("dev"));
+  app.use(
+    bodyParser.urlencoded({
+      extended: false
+    })
+  );
+  app.use(bodyParser.json());
+  app.use(
+    multer({
+      dest: path.join(__dirname, "public/upload/temp")
+    })
+  );
+  app.use(methodOverride());
+  app.use(cookieParser("BNuBEP5S9n7E2s5juGzTuhdCscHJ184jqTsaKinE"));
 
-	app.use('/public/', express.static(path.join(__dirname, '../public')));
+  app.use("/public/", express.static(path.join(__dirname, "../public")));
 
-	app.use(session({
-		secret : 'Fel1hgeQi6psGzM9kDpdyayWsOrCzMEVdYy9MGmK',
-		saveUninitialized : true,
-		resave : true
-	}));
-	app.use(passport.initialize());
-	app.use(passport.session());
-	app.use(flash());
-	app.use(function(req, res, next) {
-		res.locals.success_messages = req.flash('success_messages');
-		res.locals.error_messages = req.flash('error_messages');
-		next();
-	});
+  app.use(
+    session({
+      secret: "Fel1hgeQi6psGzM9kDpdyayWsOrCzMEVdYy9MGmK",
+      saveUninitialized: true,
+      resave: true
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(flash());
+  app.use(function(req, res, next) {
+    res.locals.success_messages = req.flash("success_messages");
+    res.locals.error_messages = req.flash("error_messages");
+    next();
+  });
 
-	routes.initialize(app, passport);
+  routes.initialize(app, passport);
 
-	if ('development' === app.get('env')) {
-		app.use(errorHandler());
-	}
+  if ("development" === app.get("env")) {
+    app.use(errorHandler());
+  }
 
-	return app;
+  return app;
 };
