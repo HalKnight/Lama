@@ -21,38 +21,42 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	ObjectId = Schema.ObjectId;
+var mongoose = require("mongoose"),
+  Schema = mongoose.Schema,
+  ObjectId = Schema.ObjectId;
 
 var CommentSchema = new Schema({
-	article_id : {
-		type : ObjectId
-	},
-	email : {
-		type : String
-	},
-	name : {
-		type : String
-	},
-	gravatar : {
-		type : String
-	},
-	comment : {
-		type : String
-	},
-	timestamp : {
-		type : Date,
-		'default' : Date.now
-	}
+  article_id: {
+    type: ObjectId
+  },
+  email: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  gravatar: {
+    type: String
+  },
+  comment: {
+    type: String
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-CommentSchema.virtual('article')
-	.set(function(article) {
-		this._article = article;
-	})
-	.get(function() {
-		return this._article;
-	});
+CommentSchema.virtual("article")
+  .set(function(article) {
+    this._article = article;
+  })
+  .get(function() {
+    return this._article;
+  });
 
-module.exports = mongoose.model('Comment', CommentSchema);
+CommentSchema.virtual("uniqueId").get(function() {
+  return this.timestamp;
+});
+
+module.exports = mongoose.model("Comment", CommentSchema);

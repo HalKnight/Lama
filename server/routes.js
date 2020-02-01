@@ -60,6 +60,7 @@ module.exports.initialize = function(app, passport) {
   app.post("/articles/:article_id/like", article.like);
   app.post("/articles/:article_id/comment", article.comment);
   app.delete("/articles/:article_id", isLoggedIn, article.remove);
+  app.delete("/articles/:article_id/commentdelete", isLoggedIn, article.removeComment);
   app.get("/login", function(req, res) {
     var viewModel;
     viewModel = {
