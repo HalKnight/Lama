@@ -2,10 +2,15 @@
 
 A Blog powered by Node.js
 
+# Installation
+
+The Current version of Lama has been tested with node.js v11.x, please make sure you have node.js v11.x installed,
+then navigate to the project directory run npm install. Then run npm start. The console should tell you what IP and Port it is running on.
+
 # Database
 
 Lama requires Mongodb, it uses Mongoose to connect.
-The commited code for the Mongoose conection, in the app.js file is using a secure Mongobd connecton and looks like this.
+The committed code for the Mongoose connection, in the app.js file is using a secure Mongobd connection and looks like this.
 
 mongoose.connect('mongodb://sysLama:123@localhost/Lama', {
 uri_decode_auth : true
