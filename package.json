@@ -24,7 +24,7 @@
     "is-absolute": "^1.0.0",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
-    "mongoose": "^4.13.19",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "multer": "^0.1.8",
     "node-persist": "^2.1.0",
