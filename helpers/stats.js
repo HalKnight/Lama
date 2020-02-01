@@ -22,57 +22,65 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-'use strict';
-var models = require('../models'),
-	async = require('async');
+"use strict";
+var models = require("../models"),
+  async = require("async");
 
 module.exports = function(callback) {
-
-	async.parallel([
-		function(next) {
-			models.Article.count({}, next);
-		},
-		function(next) {
-			models.Comment.count({}, next);
-		},
-		function(next) {
-			models.Article.aggregate({
-				$group : {
-					_id : null,
-					viewsTotal : {
-						$sum : '$views'
-					}
-				}
-			}, function(err, result) {
-				var viewsTotal = 0;
-				if (result !== undefined && result.length > 0) {
-					viewsTotal += result[0].viewsTotal;
-				}
-				next(null, viewsTotal);
-			});
-		},
-		function(next) {
-			models.Article.aggregate({
-				$group : {
-					_id : null,
-					likesTotal : {
-						$sum : '$likes'
-					}
-				}
-			}, function(err, result) {
-				var likesTotal = 0;
-				if (result !== undefined && result.length > 0) {
-					likesTotal += result[0].likesTotal;
-				}
-				next(null, likesTotal);
-			});
-		}
-	], function(err, results) {
-		callback(null, {
-			articles : results[0],
-			comments : results[1],
-			views : results[2],
-			likes : results[3]
-		});
-	});
+  async.parallel(
+    [
+      function(next) {
+        models.Article.count({}, next);
+      },
+      function(next) {
+        models.Comment.count({}, next);
+      },
+      function(next) {
+        models.Article.aggregate(
+          {
+            $group: {
+              _id: null,
+              viewsTotal: {
+                $sum: "$views"
+              }
+            }
+          },
+          function(err, result) {
+            var viewsTotal = 0;
+            if (result !== undefined && result.length > 0) {
+              viewsTotal += result[0].viewsTotal;
+            }
+            next(null, viewsTotal);
+          }
+        );
+      },
+      function(next) {
+        models.Article.aggregate(
+          {
+            $group: {
+              _id: null,
+              likesTotal: {
+                $sum: "$likes"
+              }
+            }
+          },
+          function(err, result) {
+            var likesTotal = 0;
+            if (result !== undefined && result.length > 0) {
+              likesTotal += result[0].likesTotal;
+            }
+            next(null, likesTotal);
+          }
+        );
+      }
+    ],
+    function(err, results) {
+      callback(null, {
+        articles: results[0],
+        comments: results[1],
+        views: results[2],
+        likes: results[3]
+      });
+    }
+  );
 };
