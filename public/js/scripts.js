@@ -70,7 +70,7 @@ $(function() {
 		});
 	});
 
-	$('.btn-delete').on('click', function(event) {
+	$('.delete-post').on('click', function(event) {
 		event.preventDefault();
 
 		var $this = $(this);
@@ -82,6 +82,29 @@ $(function() {
 
 			$.ajax({
 				url : '/articles/' + postId,
+				type : 'DELETE'
+			}).done(function(result) {
+				if (result) {
+					setTimeout(function() {
+						location.reload();
+					}, 0);
+				}
+			});
+		}
+	});
+  
+  $('.delete-comment').on('click', function() {
+		event.preventDefault();
+
+		var $this = $(this);
+
+		var remove = confirm('Are you sure you want to delete this comment?');
+		if (remove) {
+
+			var postId = $(this).data('id');
+      
+			$.ajax({
+				url : '/articles/' + postId + '/commentdelete',
 				type : 'DELETE'
 			}).done(function(result) {
 				if (result) {

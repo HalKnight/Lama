@@ -22,8 +22,8 @@ SOFTWARE. -->
 <!DOCTYPE html>
 <div class="panel panel-primary">
 	<div style="float: right;">
-		<button class="btn btn-danger btn-delete btn-xs"
-			data-id="{{ article.uniqueId }}">
+		<button class="btn btn-danger btn-delete btn-xs delete-post"
+			data-id="{{ article.uniqueId }}" type="submit">
 			<i class="fa fa-times"></i>
 		</button>
 	</div>
@@ -55,7 +55,6 @@ SOFTWARE. -->
 	</div>
 </div>
 
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="row">
@@ -63,6 +62,7 @@ SOFTWARE. -->
 				<strong class="panel-title">Comments</strong>
 			</div>
 			<div class="col-md-4 text-right">
+        <div style="float: right;">
 				<button class="btn btn-default btn-sm" id="btn-comment"
 					data-id="{{ article.uniqueId }}">
 					<i class="fa fa-comments-o"> Post Comment...</i>
@@ -95,8 +95,7 @@ SOFTWARE. -->
 					</div>
 					<div class="form-group col-sm-12">
 						<div class="col-sm-12 text-right">
-							<button type="submit" id="comment-btn" class="btn btn-success"
-								type="button">
+							<button type="submit" id="comment-btn" class="btn btn-success">
 								<i class="fa fa-comment"></i> Post
 							</button>
 						</div>
@@ -113,8 +112,13 @@ SOFTWARE. -->
 				<div class="media-body">
 					{{ comment }} <br /> <strong class="media-heading">{{
 						name }}</strong> <small class="text-muted">{{ timeago timestamp }}</small>
+          <button style="float: right;" class="btn btn-danger btn-delete btn-xs delete-comment"
+          data-id="{{ uniqueId }}">
+          <i class="fa fa-times"></i>
+        </button>
 				</div></li> {{/each}}
 		</ul>
 
 	</div>
+</div>
 </div>
