@@ -30,6 +30,10 @@ SOFTWARE. -->
 	{{#each users}}
 	<div class="row">
 		<div class="col-sm-6">
+      <div style="float: left">
+				<a class="btn btn-primary btn-xs"
+					href="/editProfileAdmin/{{ local.email }}">Edit</a>
+			</div>
 			<div class="well">
 				<h3>
 					<span class="fa fa-user">&nbsp;:&nbsp;{{local.name}}</span>
@@ -39,10 +43,6 @@ SOFTWARE. -->
 					<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;:&nbsp;{{local.email}}<br>
 				</p>
 
-			</div>
-			<div style="float: left">
-				<a class="btn btn-primary btn-xs"
-					href="/editProfileAdmin/{{ local.email }}">Edit</a>
 			</div>
 		</div>
 

@@ -39,7 +39,7 @@ require("./config/passport.js")(passport);
 app = config(app);
 
 mongoose.connect(
-  //"mongodb://sysLama:123@localhost/Lama",
+  "mongodb://sysLama:123@localhost/Lama",
   { useNewUrlParser: true, useUnifiedTopology: true },
   function(err, db) {}
 );
