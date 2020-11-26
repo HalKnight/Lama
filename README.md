@@ -35,10 +35,11 @@ Once up and running the first user created for the app will automatically be ass
 
 Lama has a variety of themes to choose from on the settings page. All themes are direct imports from https://bootswatch.com/3/. The default theme is Readable. Other settings available are Header this sets the header line for the app; the default is Lama. You also have the ability to turn off new user sign up and can change the URLs for the Twitter and Facebook icons in the footer of the page.
 
-# Current Version 2.0.0
+# Current Version 2.0.1
 
-First major version update. I have updated the base node js version to 12.x and have updated all dependencies to there latest version as of this build date. I also refactored all breaking feature updates to be compatible with current versions.
+Refactored Edit Profile buttons to be nested inside the upper left hand corner of profile instead of below it.
 
+To see all change history visit https://lama.halknight.net .
 # Future Release
 
 Search for blogs by date. / Delete users.
