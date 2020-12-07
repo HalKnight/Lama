@@ -39,7 +39,7 @@ Lama has a variety of themes to choose from on the settings page. All themes are
 
 Refactored Edit Profile buttons to be nested inside the upper left hand corner of profile instead of below it.
 
-To see all change history visit https://lama.halknight.net .
+To see all change history visit http://lama.halknight.net .
 # Future Release
 
 Search for blogs by date. / Delete users.
